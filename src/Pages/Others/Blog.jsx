@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Banner = () => {
+const Blog = () => {
     return (
         <div>
-            <h1>Banner Content</h1>
+            <h1>Blog Page</h1>
         </div>
     );
 };
 
-export default Banner;
+export default Blog;
