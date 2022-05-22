@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Landing from "./Pages/Home/Landing";
 import Blog from "./Pages/Others/Blog";
 import Purchase from "./Pages/Others/Purchase";
+import LogIn from "./Pages/Auth/LogIn";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/login" element={<LogIn />} />
           <Route path="/purchase/:id" element={<Purchase />} />
         </Routes>
       <Footer />

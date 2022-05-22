@@ -1,13 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-const Navbar = ({children}) => {
+const Navbar = ({ children }) => {
   return (
     <div class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <div class="w-full navbar lg:px-12 bg-base-300">
-          <div class="flex-1 px-2 mx-2 text-3xl font-bold normal-case">Auto<span className="text-red-700">Parts</span></div>
+          <div class="flex-1 px-2 mx-2 text-3xl font-bold normal-case">
+            Auto<span className="text-red-700">Parts</span>
+          </div>
           <div class="flex-none lg:hidden">
             <label for="my-drawer-3" class="btn btn-square btn-ghost">
               <svg
@@ -28,10 +30,28 @@ const Navbar = ({children}) => {
           <div class="flex-none hidden lg:block">
             <ul class="menu menu-horizontal">
               <li>
-                <NavLink className="font-semibold ml-3 rounded-lg text-lg" to="/">Home</NavLink>
+                <NavLink
+                  className="font-semibold ml-3 rounded-lg text-lg"
+                  to="/"
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink className="font-semibold ml-3 rounded-lg text-lg" to="/blog">Blog</NavLink>
+                <NavLink
+                  className="font-semibold ml-3 rounded-lg text-lg"
+                  to="/blog"
+                >
+                  Blog
+                </NavLink>
+              </li>
+              <li>
+                <Link
+                  className="font-semibold ml-3 rounded-lg text-lg bg-info"
+                  to="/login"
+                >
+                  Log In
+                </Link>
               </li>
             </ul>
           </div>
@@ -42,10 +62,22 @@ const Navbar = ({children}) => {
         <label for="my-drawer-3" class="drawer-overlay"></label>
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
           <li>
-            <NavLink className="mb-3" to="/">Home</NavLink>
+            <NavLink className="mb-3" to="/">
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink className="mb-3" to="/blog">Blog</NavLink>
+            <NavLink className="mb-3" to="/blog">
+              Blog
+            </NavLink>
+          </li>
+          <li>
+            <Link
+              className="font-semibold ml-3 rounded-lg text-lg bg-info"
+              to="/login"
+            >
+              Log In
+            </Link>
           </li>
         </ul>
       </div>
