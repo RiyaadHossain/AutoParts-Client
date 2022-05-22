@@ -1,8 +1,11 @@
+import Footer from "./Components/Footer";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
     <div>
-      <h1 className="text-red-600">hello </h1>
+      <Navbar/>
+      <Footer/>
     </div>
   );
 }
