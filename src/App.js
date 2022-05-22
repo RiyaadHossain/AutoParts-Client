@@ -1,4 +1,4 @@
-import Footer from "./Components/Footer";
+import Footer from "./Pages/Home/Footer";
 import Navbar from "./Components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Landing from "./Pages/Home/Landing";
@@ -12,8 +12,8 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>
-      </Navbar>
       <Footer />
+      </Navbar>
     </div>
   );
 }
