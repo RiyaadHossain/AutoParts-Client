@@ -1,0 +1,4 @@
+.logo-hover:hover{
+    transition: .3s ease-in-out;
+    transform: translateY(-10px);
+}
