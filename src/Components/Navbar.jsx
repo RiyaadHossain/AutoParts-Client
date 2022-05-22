@@ -1,7 +1,19 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router-dom";
+import auth from "../Authentication/Firebase.init";
 
 const Navbar = ({ children }) => {
+  const [user] = useAuthState(auth);
+  console.log(user);
+
+  const logOut = () => {
+    signOut(auth);
+    toast.success("User Logged Out", {id: 'test'})
+  };
+
   return (
     <div class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
@@ -46,12 +58,21 @@ const Navbar = ({ children }) => {
                 </NavLink>
               </li>
               <li>
-                <Link
-                  className="font-semibold ml-3 rounded-lg text-lg bg-info"
-                  to="/login"
-                >
-                  Log In
-                </Link>
+              {user ? (
+              <button
+                onClick={logOut}
+                className="font-semibold ml-3 rounded-lg text-lg bg-error"
+              >
+                Log Out
+              </button>
+            ) : (
+              <Link
+                className="font-semibold ml-3 rounded-lg text-lg bg-success"
+                to="/login"
+              >
+                Log In
+              </Link>
+            )}
               </li>
             </ul>
           </div>
@@ -72,12 +93,21 @@ const Navbar = ({ children }) => {
             </NavLink>
           </li>
           <li>
-            <Link
-              className="font-semibold ml-3 rounded-lg text-lg bg-info"
-              to="/login"
-            >
-              Log In
-            </Link>
+            {user ? (
+              <button
+                onClick={logOut}
+                className="font-semibold ml-3 rounded-lg text-lg bg-error"
+              >
+                Log Out
+              </button>
+            ) : (
+              <Link
+                className="font-semibold ml-3 rounded-lg text-lg bg-success"
+                to="/login"
+              >
+                Log In
+              </Link>
+            )}
           </li>
         </ul>
       </div>

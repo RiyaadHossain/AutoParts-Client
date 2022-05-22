@@ -5,6 +5,8 @@ import Landing from "./Pages/Home/Landing";
 import Blog from "./Pages/Others/Blog";
 import Purchase from "./Pages/Others/Purchase";
 import LogIn from "./Pages/Auth/LogIn";
+import { Toaster } from 'react-hot-toast';
+import PrivateRoute from "./Authentication/PrivateRoute";
 
 function App() {
   return (
@@ -14,10 +16,11 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<LogIn />} />
-          <Route path="/purchase/:id" element={<Purchase />} />
+          <Route path="/purchase/:id" element={<PrivateRoute><Purchase /></PrivateRoute>} />
         </Routes>
       <Footer />
       </Navbar>
+      <Toaster/>
     </div>
   );
 }
