@@ -10,11 +10,11 @@ const Landing = () => {
     return (
         <div>
             <Banner/>
+            <FeaturedBrand/>
             <Parts/>
             <BusinessSummary/>
             <WhyChooseUs/>
             <Reviews/>
-            <FeaturedBrand/>
         </div>
     );
 };
