@@ -4,52 +4,68 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import auth from "../../Authentication/Firebase.init";
 import {
-    useAuthState,
+  useAuthState,
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 
 const LogIn = () => {
-    const location = useLocation()
-    const navigate = useNavigate()
-    const [authUser] = useAuthState(auth)
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [authUser] = useAuthState(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
-    // getValues,
+    getValues,
   } = useForm();
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
+  // Get the User whenever the user is logged In and Redirected to the desired page
   let from = location.state?.from?.pathname || "/";
 
-  useEffect(()=>{
-    if(authUser){
-        navigate(from, {replace: true})
+  useEffect(() => {
+    if (authUser) {
+      navigate(from, { replace: true });
     }
-  },[authUser, from, navigate])
-  
-  if(loading || gLoading) return <p>Loading...</p>
+  }, [authUser, from, navigate]);
 
+  // Loading Spinner
+  if (loading || gLoading || sending) return <p>Loading...</p>;
+
+  // Display Error Message
   let signInError;
 
-  if (error || gError) {
+  if (error || gError || resetError) {
     signInError = (
       <p className="text-red-600 ml-4 mb-2 text-sm">
-        {error?.message || gError?.message}
+        {error?.message || gError?.message || resetError?.message}
       </p>
     );
   }
 
-
+  // On Form Submit
   const onSubmit = async (data) => {
-    console.log(data);
     await signInWithEmailAndPassword(data.email, data.password);
-    toast.success("Logged In");
+    toast.success("Logged In", { id: "test1" });
+  };
+
+  // On Reset Password
+  const handleReset = async (data) => {
+    const email = getValues("email");
+    console.log(email);
+    await sendPasswordResetEmail(email);
+    if (email) {
+      
+    }
+    email ? toast.success("Reset Password mail sent", { id: "test2" }) : toast.error("Please Type Your email", { id: "test2" })
   };
   return (
     <div class="hero min-h-[82vh]">
@@ -132,7 +148,7 @@ const LogIn = () => {
 
               <div className="mb-5 flex items-center justify-between">
                 <input
-                  //   onClick={handleReset}
+                  onClick={handleReset}
                   className="btn-link text-primary"
                   type="button"
                   value="Forget Password?"

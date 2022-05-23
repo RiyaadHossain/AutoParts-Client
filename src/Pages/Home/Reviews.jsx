@@ -10,7 +10,7 @@ const Reviews = () => {
   return (
     <div className="pt-32 container mx-auto">
       <h1 className="text-5xl text-center text-secondary font-bold mb-8">
-        Reviews
+        Our Clients
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {reviews.map((review, i) => (
