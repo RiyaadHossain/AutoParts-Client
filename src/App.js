@@ -7,6 +7,7 @@ import Purchase from "./Pages/Others/Purchase";
 import LogIn from "./Pages/Auth/LogIn";
 import { Toaster } from 'react-hot-toast';
 import PrivateRoute from "./Authentication/PrivateRoute";
+import SignUp from "./Pages/Auth/SignUp";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<LogIn />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/purchase/:id" element={<PrivateRoute><Purchase /></PrivateRoute>} />
         </Routes>
       <Footer />

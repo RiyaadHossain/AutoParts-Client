@@ -67,7 +67,7 @@ const Navbar = ({ children }) => {
               </button>
             ) : (
               <Link
-                className="font-semibold ml-3 rounded-lg text-lg bg-success"
+                className="font-semibold ml-3 rounded-lg text-lg bg-accent"
                 to="/login"
               >
                 Log In
@@ -102,7 +102,7 @@ const Navbar = ({ children }) => {
               </button>
             ) : (
               <Link
-                className="font-semibold ml-3 rounded-lg text-lg bg-success"
+                className="font-semibold ml-3 rounded-lg text-lg bg-accent"
                 to="/login"
               >
                 Log In

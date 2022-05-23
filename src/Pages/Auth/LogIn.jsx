@@ -137,7 +137,7 @@ const LogIn = () => {
                   type="button"
                   value="Forget Password?"
                 />
-                <Link to="/" className="btn-link text-primary">
+                <Link to="/signup" className="btn-link text-primary">
                   Create New Account
                 </Link>
               </div>
