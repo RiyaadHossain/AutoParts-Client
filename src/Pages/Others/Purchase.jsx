@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -6,25 +6,50 @@ import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
 
 const Purchase = () => {
-  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const { id } = useParams();
   const [user, loading] = useAuthState(auth);
   const { data, isLoading } = useQuery("part", async () => {
     const res = await fetcher.get(`/part/${id}`);
     return res.data;
   });
-  
+
   if (isLoading || loading) return <p>Loading...</p>;
-  
+
   const correctQuantity = (e) => {
     const quantity = Number(e.target.value);
-    if(quantity > data.min_order && quantity <= data.quantity) setButtonDisabled(false)    
+    if (quantity >= data.min_order && quantity <= data.quantity) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
   };
-
   // Purchase Button
-  const purchaseButton = e =>{
-
-  }
+  const purchaseButton = async (e) => {
+    e.preventDefault();
+    const actualQuantity = Number(e.target.quantity.value);
+    if (actualQuantity < data.min_order || actualQuantity > data.quantity) {
+      console.log('No no');
+      return;
+    }
+    const ordered = Number(e.target.quantity.value)
+    const updatedQuantity = data.quantity - ordered;
+    const partsData = {
+      name: data.name,
+      email: user.email,
+      img: data.img,
+      price: data.price,
+      min_order: data.min_order,
+      description: data.description,
+      ordered,
+    };
+    const resPost = await fetcher.post("/order", partsData);
+    const resPut = await fetcher.put(`/part/${data._id}`, {
+      quantity: updatedQuantity,
+    });
+    console.log(resPost.data);
+    console.log(resPut.data);
+  };
   return (
     <div className="mt-14 mx-auto max-w-[700px]">
       <div class="card  max-w-96 mx-auto bg-base-100 shadow-xl">
@@ -52,7 +77,7 @@ const Purchase = () => {
             </p>
           </div>
           <p className="text-base">{data.description}</p>
-          <form action="">
+          <form onSubmit={purchaseButton} action="">
             <div class="form-control mt-2 w-full">
               <label class="label">
                 <span class="label-text text-info">User Name</span>
@@ -85,6 +110,7 @@ const Purchase = () => {
               </label>
               <input
                 type="text"
+                defaultValue={data.min_order}
                 placeholder="Quantity"
                 name="quantity"
                 onChange={correctQuantity}
@@ -97,6 +123,7 @@ const Purchase = () => {
               </label>
               <input
                 type="text"
+                name="phone"
                 placeholder="Your Phone Number"
                 class="input input-bordered w-full "
               />
@@ -111,8 +138,7 @@ const Purchase = () => {
                 class="input input-bordered w-full "
               />
             </div>
-            <input 
-            onClick={purchaseButton}
+            <input
               disabled={buttonDisabled}
               className="btn mt-5 btn-info"
               type="submit"

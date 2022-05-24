@@ -4,7 +4,7 @@
     "name": "Tier",
     "price": 50,
     "quantity": 150,
-    "min_order": 100,
+    "min_order": 10,
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
   },
   {
@@ -12,7 +12,7 @@
     "name": "Tier",
     "price": 50,
     "quantity": 150,
-    "min_order": 100,
+    "min_order": 10,
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
   },
   {
@@ -20,7 +20,7 @@
     "name": "Tier",
     "price": 50,
     "quantity": 150,
-    "min_order": 100,
+    "min_order": 10,
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
   },
   {
@@ -28,7 +28,7 @@
     "name": "Tier",
     "price": 50,
     "quantity": 150,
-    "min_order": 100,
+    "min_order": 10,
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
   },
   {
@@ -36,7 +36,7 @@
     "name": "Tier",
     "price": 50,
     "quantity": 150,
-    "min_order": 100,
+    "min_order": 10,
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
   },
   {
@@ -44,7 +44,7 @@
     "name": "Tier",
     "price": 50,
     "quantity": 150,
-    "min_order": 100,
+    "min_order": 10,
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
   }
 ]
