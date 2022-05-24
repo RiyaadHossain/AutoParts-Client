@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
+import toast from "react-hot-toast";
 
 const Purchase = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -43,15 +44,15 @@ const Purchase = () => {
       description: data.description,
       ordered,
     };
-    const resPost = await fetcher.post("/order", partsData);
-    const resPut = await fetcher.put(`/part/${data._id}`, {
+     await fetcher.post("/order", partsData);
+     await fetcher.put(`/part/${data._id}`, {
       quantity: updatedQuantity,
     });
-    console.log(resPost.data);
-    console.log(resPut.data);
+    e.target.reset()
+    toast.success('Your Order Successfully added.')
   };
   return (
-    <div className="mt-14 mx-auto max-w-[700px]">
+    <div className="mt-14 mb-12 mx-auto max-w-[700px]">
       <div class="card  max-w-96 mx-auto bg-base-100 shadow-xl">
         <figure>
           <img

@@ -11,7 +11,7 @@ const MyOrder = () => {
   const { data, isLoading } = useQuery("order", async () => {
     const res = await fetcher.get("order", {
       headers: {
-          "email" : `${user?.email}`,
+        email: `${user?.email}`,
         "Content-type": "application/json; charset=UTF-8",
       },
     });
@@ -22,36 +22,42 @@ const MyOrder = () => {
 
   return (
     <div className="p-6 mt-6">
-      <div class="overflow-x-auto">
-        <h1 className="text-center font-bold text-primary text-4xl mb-5">
-          Your Orders
-        </h1>
-        <table class="table w-full border-2 rounded-md">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Orders</th>
-              <th>Unit Price</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((order, i) => (
+      {data.length ? (
+        <div class="overflow-x-auto">
+          <h1 className="text-center font-bold text-primary text-4xl mb-5">
+            Your Orders
+          </h1>
+          <table class="table w-full border-2 rounded-md">
+            <thead>
               <tr>
-                <th>{i + 1}</th>
-                <td className="font-bold">{order.name}</td>
-                <td>{order.ordered} pc</td>
-                <td>$ {order.price}</td>
-                <td className="flex items-center ">
-                  <button className="btn btn-xs btn-success mr-2">Pay</button>
-                  <button className="text-2xl text-error "><MdCancel/></button>
-                </td>
+                <th></th>
+                <th>Name</th>
+                <th>Orders</th>
+                <th>Unit Price</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {data.map((order, i) => (
+                <tr>
+                  <th>{i + 1}</th>
+                  <td className="font-bold">{order.name}</td>
+                  <td>{order.ordered} pc</td>
+                  <td>$ {order.price}</td>
+                  <td className="flex items-center ">
+                    <button className="btn btn-xs btn-success mr-2">Pay</button>
+                    <button className="text-2xl text-error ">
+                      <MdCancel />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <h1 className=" text-center text-secondary text-4xl font-bold">You Didn't Order any Product.</h1>
+      )}
     </div>
   );
 };
