@@ -7,7 +7,6 @@ const Reviews = () => {
     return res.data;
   });
    
-  console.log(data);
 
   if (isLoading) return <p>Loading...</p>;
 

@@ -7,6 +7,7 @@ import {
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
 
 const SignUp = () => {
@@ -26,6 +27,16 @@ const SignUp = () => {
 
   useEffect(() => {
     if (authUser) {
+      (async () => {
+        const userInfo = {
+          name: authUser.displayName || "Unknwon User",
+          email: authUser.email,
+          role: "user",
+        };
+        await fetcher
+          .get(`/user?email=${authUser.email}`, userInfo)
+          .then((data) => console.log(data));
+      })();
       navigate(from, { replace: true });
     }
   }, [authUser, from, navigate]);
@@ -49,128 +60,140 @@ const SignUp = () => {
   };
   return (
     <div class="hero min-h-[82vh]">
-      <div class="card w-full max-w-sm shadow-2xl">
-        <div class="card-body bg-base-200">
-          <h1 className="text-center text-2xl font-bold">Sign Up</h1>
-          <div class="form-control">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* Name Field */}
-              <div className="form-control mx-auto w-full max-w-xs">
-                <label className="label">
-                  <span className="label-text text-black">Name</span>
-                </label>
+      <div class="hero-content justify-between rounded bg-slate-300 p-8 flex-col lg:flex-row-reverse">
+        <div class="text-center w-1/2 lg:text-left">
+          <h1 class="text-5xl font-bold">SignUp now!</h1>
+          <p class="py-6">
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
+            a id nisi.
+          </p>
+        </div>
+        <div class="card w-1/2 max-w-sm rounded shadow-2xl">
+          <div class="card-body bg-base-200">
+            <div class="form-control">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {/* Name Field */}
+                <div className="form-control mx-auto w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text text-black">Name</span>
+                  </label>
 
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="input text-black border-black input-bordered w-full max-w-xs"
-                  {...register("name", {
-                    required: {
-                      value: true,
-                      message: "Name is Required",
-                    },
-                  })}
-                />
-                <label className="label">
-                  {errors.name?.type === "required" && (
-                    <span className="label-text-alt text-red-600">
-                      {errors.name.message}
-                    </span>
-                  )}
-                </label>
-              </div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="input text-black border-black input-bordered w-full max-w-xs"
+                    {...register("name", {
+                      required: {
+                        value: true,
+                        message: "Name is Required",
+                      },
+                    })}
+                  />
+                  <label className="label">
+                    {errors.name?.type === "required" && (
+                      <span className="label-text-alt text-red-600">
+                        {errors.name.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
 
-              {/* Email Field */}
-              <div className="form-control mx-auto w-full max-w-xs">
-                <label className="label">
-                  <span className="label-text text-black">Email</span>
-                </label>
+                {/* Email Field */}
+                <div className="form-control mx-auto w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text text-black">Email</span>
+                  </label>
 
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="input text-black border-black input-bordered w-full max-w-xs"
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "Email is Required",
-                    },
-                    pattern: {
-                      value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
-                      message: "Provide Valid Email",
-                    },
-                  })}
-                />
-                <label className="label">
-                  {errors.email?.type === "required" && (
-                    <span className="label-text-alt text-red-600">
-                      {errors.email.message}
-                    </span>
-                  )}
-                  {errors.email?.type === "pattern" && (
-                    <span className="label-text-alt text-red-600">
-                      {errors.email.message}
-                    </span>
-                  )}
-                </label>
-              </div>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="input text-black border-black input-bordered w-full max-w-xs"
+                    {...register("email", {
+                      required: {
+                        value: true,
+                        message: "Email is Required",
+                      },
+                      pattern: {
+                        value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+                        message: "Provide Valid Email",
+                      },
+                    })}
+                  />
+                  <label className="label">
+                    {errors.email?.type === "required" && (
+                      <span className="label-text-alt text-red-600">
+                        {errors.email.message}
+                      </span>
+                    )}
+                    {errors.email?.type === "pattern" && (
+                      <span className="label-text-alt text-red-600">
+                        {errors.email.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
 
-              {/* Password Field */}
-              <div className="form-control mx-auto w-full max-w-xs">
-                <label className="label">
-                  <span className="label-text text-black">Password</span>
-                </label>
+                {/* Password Field */}
+                <div className="form-control mx-auto w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text text-black">Password</span>
+                  </label>
 
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="input text-black border-black input-bordered w-full max-w-xs"
-                  {...register("password", {
-                    required: {
-                      value: true,
-                      message: "Password is Required",
-                    },
-                    minLength: {
-                      value: 5,
-                      message: "Must be 6 Characters or longer",
-                    },
-                  })}
-                />
-                <label className="label">
-                  {errors.password?.type === "required" && (
-                    <span className="label-text-alt text-red-600">
-                      {errors.password.message}
-                    </span>
-                  )}
-                  {errors.password?.type === "minLength" && (
-                    <span className="label-text-alt text-red-600">
-                      {errors.password.message}
-                    </span>
-                  )}
-                </label>
-              </div>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="input text-black border-black input-bordered w-full max-w-xs"
+                    {...register("password", {
+                      required: {
+                        value: true,
+                        message: "Password is Required",
+                      },
+                      minLength: {
+                        value: 5,
+                        message: "Must be 6 Characters or longer",
+                      },
+                    })}
+                  />
+                  <label className="label">
+                    {errors.password?.type === "required" && (
+                      <span className="label-text-alt text-red-600">
+                        {errors.password.message}
+                      </span>
+                    )}
+                    {errors.password?.type === "minLength" && (
+                      <span className="label-text-alt text-red-600">
+                        {errors.password.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
 
-              {signInError}
+                {signInError}
 
-              <Link to="/login" className="btn-link mb-6 inline-block text-primary">
-                Already Have an Account
-              </Link>
+                <Link
+                  to="/login"
+                  className="btn-link mb-6 inline-block text-primary"
+                >
+                  Already Have an Account
+                </Link>
 
-              {/* Submit Button */}
-              <div className="text-center">
-                <input
-                  className="btn mx-auto w-full bg-slate-600 text-gray-100 hover:text-white border-slate-600 max-w-xs"
-                  type="submit"
-                  value="Sign Up"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="divider">OR</div>
-          <div class="form-control mt-2">
-            <button onClick={() => signInWithGoogle()} class="btn btn-accent">
-              Continue with Google
-            </button>
+                {/* Submit Button */}
+                <div className="text-center">
+                  <input
+                    className="btn mx-auto w-full bg-slate-600 text-gray-100 hover:text-white border-slate-600 max-w-xs"
+                    type="submit"
+                    value="Sign Up"
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="divider">OR</div>
+            <div class="form-control mt-2">
+              <button onClick={() => signInWithGoogle()} class="btn btn-accent">
+                Continue with Google
+              </button>
+            </div>
           </div>
         </div>
       </div>
