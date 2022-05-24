@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { MdCancel } from "react-icons/md";
 import { useQuery } from "react-query";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
@@ -32,7 +33,7 @@ const MyOrder = () => {
               <th>Name</th>
               <th>Orders</th>
               <th>Unit Price</th>
-              <th>Pay</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -42,8 +43,9 @@ const MyOrder = () => {
                 <td className="font-bold">{order.name}</td>
                 <td>{order.ordered} pc</td>
                 <td>$ {order.price}</td>
-                <td>
-                  <button className="btn btn-xs btn-success">Pay</button>
+                <td className="flex items-center ">
+                  <button className="btn btn-xs btn-success mr-2">Pay</button>
+                  <button className="text-2xl text-error "><MdCancel/></button>
                 </td>
               </tr>
             ))}

@@ -22,7 +22,14 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          >
             <Route index element={<MyOrder />} />
             <Route path="add-review" element={<AddReview />} />
             <Route path="my-profile" element={<MyProfile />} />

@@ -8,14 +8,14 @@ const BusinessSummary = () => {
   return (
     <div className="pt-32 mx-auto container">
       <h1 className="text-5xl text-center text-secondary font-bold mb-12">
-       Successful Deals
+       Business Summary
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Summary - 1 */}
         <div className="text-center">
           <BsPeopleFill className="text-7xl text-accent mx-auto" />
           <div>
-            <h1 className="text-5xl font-bold mt-8 mb-2">100 +</h1>
+            <h1 className="text-5xl font-bold mt-8 mb-2">90k +</h1>
             <p className="text-3xl font-semibold text-accent">Customers</p>
           </div>
         </div>
@@ -23,7 +23,7 @@ const BusinessSummary = () => {
         <div className="text-center">
           <GiReceiveMoney className="text-7xl text-accent mx-auto" />
           <div>
-            <h1 className="text-5xl font-bold mt-8 mb-2">100 +</h1>
+            <h1 className="text-5xl font-bold mt-8 mb-2">200m +</h1>
             <p className="text-3xl font-semibold text-accent">Annual revenue</p>
           </div>
         </div>
@@ -39,7 +39,7 @@ const BusinessSummary = () => {
         <div className="text-center">
           <FaTools className="text-7xl text-accent mx-auto" />
           <div>
-            <h1 className="text-5xl font-bold mt-8 mb-2">100 +</h1>
+            <h1 className="text-5xl font-bold mt-8 mb-2">60 +</h1>
             <p className="text-3xl font-semibold text-accent">Tools</p>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Dashboard from '../Dashboard/Dashboard';
 import Banner from './Banner';
 import BusinessSummary from './BusinessSummary';
 import FeaturedBrand from './FeaturedBrand';
@@ -16,7 +15,6 @@ const Landing = () => {
             <BusinessSummary/>
             <WhyChooseUs/>
             <Reviews/>
-            <Dashboard/>
         </div>
     );
 };

@@ -9,6 +9,8 @@ import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
+import { useQuery } from "react-query";
+import fetcher from "../../API/api";
 
 const LogIn = () => {
   const location = useLocation();
