@@ -65,6 +65,14 @@ const Navbar = ({ children }) => {
               <li>
                 <NavLink
                   className="font-semibold ml-3 rounded-lg text-lg"
+                  to="/portfolio"
+                >
+                  Portfolio
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="font-semibold ml-3 rounded-lg text-lg"
                   to="/dashboard"
                 >
                   Dashboard
@@ -106,16 +114,21 @@ const Navbar = ({ children }) => {
             </NavLink>
           </li>
           <li>
+            <NavLink className="mb-3" to="/portfolio">
+              Portfolio
+            </NavLink>
+          </li>
+          <li>
             {user ? (
               <button
                 onClick={logOut}
-                className="font-semibold ml-3 rounded-lg text-lg bg-error"
+                className="font-semibold rounded-lg text-lg bg-error"
               >
                 Log Out
               </button>
             ) : (
               <Link
-                className="font-semibold ml-3 rounded-lg text-lg bg-accent"
+                className="font-semibold rounded-lg text-lg bg-accent"
                 to="/login"
               >
                 Log In
