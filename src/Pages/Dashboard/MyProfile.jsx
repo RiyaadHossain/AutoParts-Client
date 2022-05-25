@@ -9,7 +9,12 @@ const MyProfile = () => {
   const [openModal, setOpenModal] = useState(null)
   const [user] = useAuthState(auth);
   const { data, isLoading } = useQuery("user", async () => {
-    const res = await fetcher.get(`/user?email=${user.email}`);
+    const res = await fetcher.get(`/user?email=${user.email}`, {
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    });
     setOpenModal('Open Modal')
     return res.data;
   });

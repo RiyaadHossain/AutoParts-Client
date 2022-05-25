@@ -10,6 +10,7 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import fetcher from "../../API/api";
+import useToken from "../../Hooks/useToken";
 
 const LogIn = () => {
   const location = useLocation();
@@ -29,8 +30,16 @@ const LogIn = () => {
 
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
+  const [token] = useToken(user || gUser);
+  console.log(token);
+
   // Get the User whenever the user is logged In and Redirected to the desired page
   let from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
 
   useEffect(() => {
     if (authUser) {
@@ -40,10 +49,14 @@ const LogIn = () => {
           email: authUser.email,
           role: "user",
         };
-        console.log(userInfo);
         await fetcher
-          .put(`/user?email=${authUser.email}`, userInfo)
-          .then((data) => console.log(data));
+          .put(`/user?email=${authUser.email}`, userInfo, {
+            headers: {
+              "content-type": "application/json",
+              "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          })
+          .then((data) => {});
       })();
       navigate(from, { replace: true });
     }

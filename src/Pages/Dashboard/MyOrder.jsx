@@ -15,7 +15,8 @@ const MyOrder = () => {
     const res = await fetcher.get("order", {
       headers: {
         email: `${user?.email}`,
-        "Content-type": "application/json; charset=UTF-8",
+        "Content-type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
       },
     });
     return res.data;

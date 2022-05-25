@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
+import useToken from "../../Hooks/useToken";
 
 const SignUp = () => {
   const location = useLocation();
@@ -23,7 +24,15 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
+  const [token] = useToken(user || gUser);
+
+  // Get the User whenever the user is logged In and Redirected to the desired page
   let from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
 
   useEffect(() => {
     if (authUser) {
@@ -34,7 +43,12 @@ const SignUp = () => {
           role: "user",
         };
         await fetcher
-          .get(`/user?email=${authUser.email}`, userInfo)
+          .get(`/user?email=${authUser.email}`, userInfo, {
+            headers: {
+              "content-type": "application/json",
+              "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          })
           .then((data) => console.log(data));
       })();
       navigate(from, { replace: true });

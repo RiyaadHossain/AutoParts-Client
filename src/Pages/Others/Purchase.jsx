@@ -57,7 +57,13 @@ const Purchase = () => {
       description: data.description,
       ordered,
     };
-    await fetcher.post("/order", partsData);
+    await fetcher.post("/order", partsData, {
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    });
+    
     await fetcher.put(`/part/${data._id}`, {
       quantity: updatedQuantity,
     });

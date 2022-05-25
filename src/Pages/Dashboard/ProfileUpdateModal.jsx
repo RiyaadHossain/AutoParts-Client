@@ -25,7 +25,12 @@ const ProfileUpdateModal = ({setOpenModal}) => {
       education,
       linkedin,
     };
-    await fetcher.put(`/user?email=${user.email}`, userInfo).then((data) => {
+    await fetcher.put(`/user?email=${user.email}`, userInfo, {
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((data) => {
       setOpenModal(null)
       window.location.reload()
       toast.success("User Updated Successfully");

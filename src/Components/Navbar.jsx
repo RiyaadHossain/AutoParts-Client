@@ -10,6 +10,7 @@ const Navbar = ({ children }) => {
 
   const logOut = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
     toast.success("User Logged Out", { id: "test" });
   };
 
