@@ -7,7 +7,6 @@ import auth from "../Authentication/Firebase.init";
 
 const Navbar = ({ children }) => {
   const [user] = useAuthState(auth);
-
   const logOut = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");

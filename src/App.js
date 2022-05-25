@@ -12,6 +12,10 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import MyOrder from "./Pages/Dashboard/MyOrder";
 import AddReview from "./Pages/Dashboard/AddReview";
+import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
+import AddItem from "./Pages/Dashboard/AddItem";
+import ManageOrder from "./Pages/Dashboard/ManageOrder";
+import ManageParts from "./Pages/Dashboard/ManageParts";
 
 function App() {
   return (
@@ -30,9 +34,13 @@ function App() {
               </PrivateRoute>
             }
           >
-            <Route index element={<MyOrder />} />
+            <Route index element={<MyProfile />} />
+            <Route path="my-order" element={<MyOrder />} />
             <Route path="add-review" element={<AddReview />} />
-            <Route path="my-profile" element={<MyProfile />} />
+            <Route path="make-admin" element={<MakeAdmin />} />
+            <Route path="add-item" element={<AddItem />} />
+            <Route path="manage-order" element={<ManageOrder />} />
+            <Route path="manage-Parts" element={<ManageParts />} />
           </Route>
           <Route
             path="/purchase/:id"

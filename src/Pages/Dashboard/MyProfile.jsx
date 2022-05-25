@@ -12,7 +12,7 @@ const MyProfile = () => {
     const res = await fetcher.get(`/user?email=${user.email}`, {
       headers: {
         "content-type": "application/json",
-        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     });
     setOpenModal('Open Modal')

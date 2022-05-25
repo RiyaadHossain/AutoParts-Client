@@ -57,18 +57,35 @@ const Purchase = () => {
       description: data.description,
       ordered,
     };
-    await fetcher.post("/order", partsData, {
-      headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
-    
-    await fetcher.put(`/part/${data._id}`, {
-      quantity: updatedQuantity,
-    });
-    e.target.reset();
-    toast.success("Your Order Successfully added.");
+    await fetcher
+      .post("/order", partsData, {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .catch((err) => {
+        if (err.message) {
+          toast.error("Your JWT Token is invalid", { id: "key" });
+        }
+      });
+
+    await fetcher
+      .put(`/part/${data._id}`, {
+        quantity: updatedQuantity,
+      })
+      .then((res) => {
+        if(res.data.modifiedCount){
+
+          e.target.reset();
+          toast.success("Your Order Successfully added.");
+        }
+      })
+      .catch((err) => {
+        if (err.message) {
+          toast.error("Your JWT Token is invalid", { id: "key" });
+        }
+      });
   };
   return (
     <div className="mt-14 mb-12 mx-auto max-w-[700px]">
