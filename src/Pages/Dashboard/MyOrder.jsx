@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { MdCancel } from "react-icons/md";
 import { useQuery } from "react-query";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
+import CancelOrderModal from "./CancelOrderModal";
 
 const MyOrder = () => {
   const [user] = useAuthState(auth);
+  const [openModal, setOpenModal] = useState(null)
+  const [reFetch, setReFetch] = useState(false)
 
-  const { data, isLoading } = useQuery("order", async () => {
+  const { data, isLoading } = useQuery(["order", reFetch], async () => {
     const res = await fetcher.get("order", {
       headers: {
         email: `${user?.email}`,
@@ -46,17 +49,20 @@ const MyOrder = () => {
                   <td>$ {order.price}</td>
                   <td className="flex items-center ">
                     <button className="btn btn-xs btn-success mr-2">Pay</button>
-                    <button className="text-2xl text-error ">
+                    <label onClick={()=> setOpenModal(order)} for="my-modal" class="text-2xl text-error">
                       <MdCancel />
-                    </button>
+                    </label>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {openModal && <CancelOrderModal setOpenModal={setOpenModal} reFetch={reFetch} setReFetch={setReFetch} openModal={openModal}/>}
         </div>
       ) : (
-        <h1 className=" text-center text-secondary text-4xl font-bold">You Didn't Order any Product.</h1>
+        <h1 className=" text-center text-secondary text-4xl font-bold">
+          You Didn't Order any Product.
+        </h1>
       )}
     </div>
   );

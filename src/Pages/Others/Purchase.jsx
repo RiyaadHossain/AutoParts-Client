@@ -25,15 +25,28 @@ const Purchase = () => {
       setButtonDisabled(true);
     }
   };
+
+  let errorMsg;
+  if (buttonDisabled) {
+    errorMsg = (
+      <p className="text-error">
+        You have to buy at least {data.min_order} pic parts and maximum
+        {data.quantity} pic parts.
+      </p>
+    );
+  } else {
+    errorMsg = <p></p>;
+  }
+
   // Purchase Button
   const purchaseButton = async (e) => {
     e.preventDefault();
     const actualQuantity = Number(e.target.quantity.value);
     if (actualQuantity < data.min_order || actualQuantity > data.quantity) {
-      console.log('No no');
+      console.log("No no");
       return;
     }
-    const ordered = Number(e.target.quantity.value)
+    const ordered = Number(e.target.quantity.value);
     const updatedQuantity = data.quantity - ordered;
     const partsData = {
       name: data.name,
@@ -44,12 +57,12 @@ const Purchase = () => {
       description: data.description,
       ordered,
     };
-     await fetcher.post("/order", partsData);
-     await fetcher.put(`/part/${data._id}`, {
+    await fetcher.post("/order", partsData);
+    await fetcher.put(`/part/${data._id}`, {
       quantity: updatedQuantity,
     });
-    e.target.reset()
-    toast.success('Your Order Successfully added.')
+    e.target.reset();
+    toast.success("Your Order Successfully added.");
   };
   return (
     <div className="mt-14 mb-12 mx-auto max-w-[700px]">
@@ -139,6 +152,7 @@ const Purchase = () => {
                 class="input input-bordered w-full "
               />
             </div>
+            {errorMsg && errorMsg}
             <input
               disabled={buttonDisabled}
               className="btn mt-5 btn-info"
