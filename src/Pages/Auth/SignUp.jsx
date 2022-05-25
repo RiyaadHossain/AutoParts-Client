@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
+import Spinner from "../../Components/Spinner";
 import useToken from "../../Hooks/useToken";
 
 const SignUp = () => {
@@ -54,7 +55,7 @@ const SignUp = () => {
     }
   }, [authUser, from, navigate]);
 
-  if (loading || gLoading) return <p>Loading...</p>;
+  if (loading || gLoading) return <Spinner/>;
 
   let signInError;
 

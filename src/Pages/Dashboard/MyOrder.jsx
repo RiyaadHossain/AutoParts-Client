@@ -4,6 +4,7 @@ import { MdCancel } from "react-icons/md";
 import { useQuery } from "react-query";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
+import Spinner from "../../Components/Spinner";
 import CancelOrderModal from "./CancelOrderModal";
 
 const MyOrder = () => {
@@ -22,7 +23,7 @@ const MyOrder = () => {
     return res.data;
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner/>;
 
   return (
     <div className="p-6 mt-6">

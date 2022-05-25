@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
+import Spinner from "../../Components/Spinner";
 import ProfileUpdateModal from "./ProfileUpdateModal";
 
 const MyProfile = () => {
@@ -18,7 +19,7 @@ const MyProfile = () => {
     setOpenModal('Open Modal')
     return res.data;
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner/>;
   return (
     <div>
       <div className="card max-w-3xl mx-auto mt-28 bg-base-100 shadow-xl">

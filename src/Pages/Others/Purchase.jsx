@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
 import toast from "react-hot-toast";
+import Spinner from "../../Components/Spinner";
 
 const Purchase = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -15,7 +16,7 @@ const Purchase = () => {
     return res.data;
   });
 
-  if (isLoading || loading) return <p>Loading...</p>;
+  if (isLoading || loading) return <Spinner/>;
 
   const correctQuantity = (e) => {
     const quantity = Number(e.target.value);

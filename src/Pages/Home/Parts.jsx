@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import fetcher from "../../API/api";
+import Spinner from "../../Components/Spinner";
 
 const Parts = () => {
   const { data, isLoading } = useQuery("parts", async () => {
@@ -9,7 +10,7 @@ const Parts = () => {
     return res.data;
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner/>;
 
   return (
     <div className="pt-32">

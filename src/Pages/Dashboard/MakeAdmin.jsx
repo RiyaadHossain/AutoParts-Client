@@ -1,8 +1,8 @@
-import { async } from "@firebase/util";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import fetcher from "../../API/api";
+import Spinner from "../../Components/Spinner";
 
 const MakeAdmin = () => {
     const [refetch, setRefetch] = useState(false)
@@ -15,7 +15,7 @@ const MakeAdmin = () => {
     });
     return res.data;
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner/>;
 
   const makeAdmin = async (email) => {
     await fetcher.put(`/user?email=${email}`,{role: 'admin'}, {
@@ -60,6 +60,7 @@ const MakeAdmin = () => {
                 </td>
                 <td>
                   <button
+                  disabled={user.role === 'admin'}
                     onClick={() => makeAdmin(user.email)}
                     className="btn btn-success btn-sm"
                   >

@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import fetcher from "../../API/api";
+import Spinner from "../../Components/Spinner";
 
 const Reviews = () => {
   const { data, isLoading } = useQuery("review", async () => {
@@ -8,7 +9,7 @@ const Reviews = () => {
   });
    
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner/>;
 
   return (
     <div className="pt-32 container mx-auto mb-14">

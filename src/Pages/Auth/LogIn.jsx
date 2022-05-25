@@ -11,6 +11,7 @@ import {
 } from "react-firebase-hooks/auth";
 import fetcher from "../../API/api";
 import useToken from "../../Hooks/useToken";
+import Spinner from "../../Components/Spinner";
 
 const LogIn = () => {
   const location = useLocation();
@@ -62,7 +63,7 @@ const LogIn = () => {
   }, [authUser, from, navigate]);
 
   // Loading Spinner
-  if (loading || gLoading || sending) return <p>Loading...</p>;
+  if (loading || gLoading || sending) return <Spinner/>;
 
   // Display Error Message
   let signInError;
