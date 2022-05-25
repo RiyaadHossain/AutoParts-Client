@@ -40,7 +40,6 @@ const SignUp = () => {
         const userInfo = {
           name: authUser.displayName || "Unknwon User",
           email: authUser.email,
-          role: "user",
         };
         await fetcher
           .get(`/user?email=${authUser.email}`, userInfo, {

@@ -21,7 +21,7 @@ const MyProfile = () => {
   if (isLoading) return <p>Loading...</p>;
   return (
     <div>
-      <div className="card w-96 mx-auto mt-28 bg-base-100 shadow-xl">
+      <div className="card max-w-3xl mx-auto mt-28 bg-base-100 shadow-xl">
         <div class="card-body">
           <h2 class="card-title text-3xl font-bold mb-2">{data.name || "Not Provided"}</h2>
           <p className="mb-1 text-xl">

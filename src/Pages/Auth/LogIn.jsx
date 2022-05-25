@@ -47,7 +47,6 @@ const LogIn = () => {
         const userInfo = {
           name: authUser.displayName || "Unknwon User",
           email: authUser.email,
-          role: "user",
         };
         await fetcher
           .put(`/user?email=${authUser.email}`, userInfo, {
