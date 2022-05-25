@@ -5,7 +5,7 @@ import fetcher from "../../API/api";
 import Spinner from "../../Components/Spinner";
 
 const MakeAdmin = () => {
-    const [refetch, setRefetch] = useState(false)
+  const [refetch, setRefetch] = useState(false);
   const { data, isLoading } = useQuery(["make-user", refetch], async () => {
     const res = await fetcher.get("/make-user", {
       headers: {
@@ -15,24 +15,31 @@ const MakeAdmin = () => {
     });
     return res.data;
   });
-  if (isLoading) return <Spinner/>;
+  if (isLoading) return <Spinner />;
 
   const makeAdmin = async (email) => {
-    await fetcher.put(`/user?email=${email}`,{role: 'admin'}, {
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then(res => {
-        if(res.status === 200){
-            toast.success("User Role is Admin Now", {id:'admin'})
-            setRefetch(!refetch)
+    await fetcher
+      .put(
+        `/user?email=${email}`,
+        { role: "admin" },
+        {
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
         }
-    }).catch(err =>{
-        if(err.message){
-            toast.error("Unauthorized Access", {id: '1'})
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("User Role is Admin Now", { id: "admin" });
+          setRefetch(!refetch);
         }
-    });
+      })
+      .catch((err) => {
+        if (err.message) {
+          toast.error("Unauthorized Access", { id: "1" });
+        }
+      });
   };
   return (
     <div>
@@ -60,7 +67,7 @@ const MakeAdmin = () => {
                 </td>
                 <td>
                   <button
-                  disabled={user.role === 'admin'}
+                    disabled={user.role === "admin"}
                     onClick={() => makeAdmin(user.email)}
                     className="btn btn-success btn-sm"
                   >
