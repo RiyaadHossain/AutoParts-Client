@@ -18,12 +18,14 @@ const Navbar = ({ children }) => {
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <div class="w-full navbar lg:px-12 bg-base-300">
-          <label
-            for="my-drawer-2"
-            class="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
+          {user && (
+            <label
+              for="my-drawer-2"
+              class="btn btn-primary drawer-button lg:hidden"
+            >
+              Open drawer
+            </label>
+          )}
           <div class="flex-1 px-2 mx-2 text-3xl font-bold normal-case">
             Auto<span className="text-red-700">Parts</span>
           </div>
@@ -70,14 +72,16 @@ const Navbar = ({ children }) => {
                   Portfolio
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  className="font-semibold ml-3 rounded-lg text-lg"
-                  to="/dashboard"
-                >
-                  Dashboard
-                </NavLink>
-              </li>
+              {user && (
+                <li>
+                  <NavLink
+                    className="font-semibold ml-3 rounded-lg text-lg"
+                    to="/dashboard"
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
               <li>
                 {user ? (
                   <button

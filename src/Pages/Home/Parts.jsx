@@ -23,7 +23,7 @@ const Parts = () => {
             <div class="card max-w-96 mx-auto bg-base-100 shadow-xl" key={i}>
               <figure>
                 <img
-                  className="h-[430px] w-full object-cover"
+                  className="h-[420px] w-full object-cover"
                   src={img}
                   alt="Shoes"
                 />

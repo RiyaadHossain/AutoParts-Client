@@ -10,7 +10,7 @@ const AddReview = () => {
   const addReview = async (e) => {
     e.preventDefault();
     const reviewInfo = {
-      img: user.photoURL || "https://randomuser.me/api/portraits/med/men/75.jpg",
+      img: user.photoURL || "https://api.lorem.space/image/face?hash=92048",
       name: user.displayName || e.target.name.value,
       ratting: e.target.ratings.value || 0,
       review: e.target.review.value,

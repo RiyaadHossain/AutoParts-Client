@@ -4,10 +4,10 @@ const Portfolio = () => {
   return (
     <div className="min-h-[74vh] flex items-center justify-center">
       <div>
-        <h1 className="text-center text-5xl font-bold mb-8 text-primary mt-11">
+        <h1 className="text-center text-5xl font-bold mb-8 text-sky-700 mt-11">
           My Portfolio
         </h1>
-        <div className="md:min-w-[500px] mx-auto border p-6 rounded-md">
+        <div className="md:min-w-[500px] mx-auto border p-6 rounded-md shadow-indigo-50 shadow-md bg-slate-100">
           <p className="text-xl mb-5">
             <span className="font-bold">Name:</span> Riyad Hossain
           </p>

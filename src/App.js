@@ -19,6 +19,7 @@ import ManageParts from "./Pages/Dashboard/ManageParts";
 import AdminRoute from "./Authentication/AdminRoute";
 import NotFound from "./Components/NotFound";
 import Portfolio from "./Pages/Others/Portfolio";
+import Payment from "./Pages/Others/Payment";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/payment/:id" element={<Payment />} />
           <Route
             path="/dashboard"
             element={

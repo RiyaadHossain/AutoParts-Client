@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { MdCancel } from "react-icons/md";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import fetcher from "../../API/api";
 import auth from "../../Authentication/Firebase.init";
 import Spinner from "../../Components/Spinner";
 import CancelOrderModal from "./CancelOrderModal";
 
 const MyOrder = () => {
+  const navigate = useNavigate()
   const [user] = useAuthState(auth);
   const [openModal, setOpenModal] = useState(null)
   const [reFetch, setReFetch] = useState(false)
@@ -50,7 +52,7 @@ const MyOrder = () => {
                   <td>{order.ordered} pc</td>
                   <td>$ {order.price}</td>
                   <td className="flex items-center ">
-                    <button className="btn btn-xs btn-success mr-2">Pay</button>
+                    <button onClick={() => navigate(`/payment/${order._id}`)} className="btn btn-xs btn-success mr-2">Pay</button>
                     <label onClick={()=> setOpenModal(order)} for="my-modal" class="text-2xl text-error">
                       <MdCancel />
                     </label>

@@ -57,7 +57,7 @@ const MakeAdmin = () => {
             {data.map((user, i) => (
               <tr>
                 <th>{i + 1}</th>
-                <td className="font-bold">{user.name}</td>
+                <td className="font-bold">{user.name || 'Unknown User'}</td>
                 <td>
                   {user.role === "admin" ? (
                     <p className="text-success">Already Admin</p>
