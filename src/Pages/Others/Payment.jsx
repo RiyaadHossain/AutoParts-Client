@@ -27,7 +27,6 @@ const Payment = () => {
   });
 
   if (isLoading) return <Spinner />;
-  console.log(data);
 
   return (
     <div class="h-[72vh] flex items-center justify-center py-6">
@@ -51,7 +50,7 @@ const Payment = () => {
         <div class=" p-5 w-[500px] mx-auto rounded-md bg-base-100 shadow-2xl mt-8">
           <div class="">
             <Elements stripe={stripePromise}>
-              <CheckoutForm />
+              <CheckoutForm data={data} />
             </Elements>
           </div>
         </div>

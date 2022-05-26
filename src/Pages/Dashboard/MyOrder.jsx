@@ -9,23 +9,23 @@ import Spinner from "../../Components/Spinner";
 import CancelOrderModal from "./CancelOrderModal";
 
 const MyOrder = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
-  const [openModal, setOpenModal] = useState(null)
-  const [reFetch, setReFetch] = useState(false)
+  const [openModal, setOpenModal] = useState(null);
+  const [reFetch, setReFetch] = useState(false);
 
   const { data, isLoading } = useQuery(["order", reFetch], async () => {
     const res = await fetcher.get("order", {
       headers: {
         email: `${user?.email}`,
         "Content-type": "application/json",
-        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     });
     return res.data;
   });
 
-  if (isLoading) return <Spinner/>;
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="p-6 mt-6">
@@ -52,16 +52,37 @@ const MyOrder = () => {
                   <td>{order.ordered} pc</td>
                   <td>$ {order.price}</td>
                   <td className="flex items-center ">
-                    <button onClick={() => navigate(`/payment/${order._id}`)} className="btn btn-xs btn-success mr-2">Pay</button>
-                    <label onClick={()=> setOpenModal(order)} for="my-modal" class="text-2xl text-error">
-                      <MdCancel />
-                    </label>
+                    {!order.paid && (
+                      <button
+                        onClick={() => navigate(`/payment/${order._id}`)}
+                        className="btn btn-xs btn-success mr-2"
+                      >
+                        Pay
+                      </button>
+                    )}
+                    {order.paid && <p className="text-green-500">Paid</p>}
+                    {!order.paid && (
+                      <label
+                        onClick={() => setOpenModal(order)}
+                        for="my-modal"
+                        class="text-2xl text-error"
+                      >
+                        <MdCancel />
+                      </label>
+                    )}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          {openModal && <CancelOrderModal setOpenModal={setOpenModal} reFetch={reFetch} setReFetch={setReFetch} openModal={openModal}/>}
+          {openModal && (
+            <CancelOrderModal
+              setOpenModal={setOpenModal}
+              reFetch={reFetch}
+              setReFetch={setReFetch}
+              openModal={openModal}
+            />
+          )}
         </div>
       ) : (
         <h1 className=" text-center text-secondary text-4xl font-bold">
