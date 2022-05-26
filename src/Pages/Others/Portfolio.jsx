@@ -36,7 +36,7 @@ const Portfolio = () => {
             <span className="font-bold">My Projects:</span>
             <ul className="list-disc ml-16">
               <li className="text-blue-600">
-                <a href="https://doctors-portal-003.web.app/">Doctor Portal</a>
+                <a href="https://common-project-000.web.app/">Travel Mania</a>
               </li>
               <li className="text-blue-600">
                 <a href="https://laptop-03.web.app/">Laptop Hub</a>
