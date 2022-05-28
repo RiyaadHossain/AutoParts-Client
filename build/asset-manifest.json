@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8a6a64d9.css",
+    "main.js": "/static/js/main.e44b96d8.js",
+    "static/media/NotFound.gif": "/static/media/NotFound.181c5a6430bcb77324b1.gif",
+    "static/media/CarHeadLight.jpg": "/static/media/CarHeadLight.2c7cd44b665943931ea9.jpg",
+    "static/media/Chevrolet.png": "/static/media/Chevrolet.31276cce9ad74f22ddda.png",
+    "static/media/Lamborghini.png": "/static/media/Lamborghini.e65f3db866c52fc94241.png",
+    "static/media/BMW.png": "/static/media/BMW.a35223bb0b51069a80e9.png",
+    "static/media/Tesla.png": "/static/media/Tesla.eacc38b73ba4f08b1bb8.png",
+    "static/media/Ferrari.png": "/static/media/Ferrari.3e4cf01e9514add3b20e.png",
+    "static/media/Peugeot.png": "/static/media/Peugeot.666659f18ed9ed767626.png",
+    "index.html": "/index.html",
+    "main.8a6a64d9.css.map": "/static/css/main.8a6a64d9.css.map",
+    "main.e44b96d8.js.map": "/static/js/main.e44b96d8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8a6a64d9.css",
+    "static/js/main.e44b96d8.js"
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "img": "https://i.ibb.co/mGn4KqS/car-wheel-min.jpg",
+    "name": "Wheel",
+    "price": 50,
+    "quantity": 150,
+    "min_order": 15,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
+  },
+  {
+    "img": "https://i.ibb.co/G9hcqw9/car-window.jpg",
+    "name": "Car Window",
+    "price": 100,
+    "quantity": 50,
+    "min_order": 5,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
+  },
+  {
+    "img": "https://i.ibb.co/18qTPmG/car-transmission-min.jpg",
+    "name": "Tranmission",
+    "price": 250,
+    "quantity": 10,
+    "min_order": 10,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
+  },
+  {
+    "img": "https://i.ibb.co/XW7jGX1/car-suspension-min.jpg",
+    "name": "Suspension",
+    "price": 150,
+    "quantity": 80,
+    "min_order": 12,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
+  },
+  {
+    "img": "https://i.ibb.co/nj7tLZR/car-engine-min.jpg",
+    "name": "Engine",
+    "price": 500,
+    "quantity": 50,
+    "min_order": 4,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
+  },
+  {
+    "img": "https://i.ibb.co/cLJ65k6/car-radiator-min.jpg",
+    "name": "Radiator",
+    "price": 350,
+    "quantity": 70,
+    "min_order": 8,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellat deleniti a in consequuntur ratione!"
+  }
+]
